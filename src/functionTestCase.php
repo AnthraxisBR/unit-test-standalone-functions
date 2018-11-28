@@ -20,7 +20,6 @@ class functionTestCase extends TestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->setFile( getenv('TEST_PATH') .'\\'. getenv('TEST_FILE'));
 
         $this->isAvailable();
     }
@@ -28,10 +27,11 @@ class functionTestCase extends TestCase
     public function setFile(string $file)
     {
         try{
-            require_once $file;
+            $this->file = $file;
+            include_once $file;
         }catch (\Exception $e)
         {
-            throw new  \Exception('Arquivo não encontrado','0001');
+            throw new  \Exception('Arquivo não encontrado',0001);
         }
     }
 
@@ -41,7 +41,7 @@ class functionTestCase extends TestCase
             $this->function = $function;
             return true;
         }
-        throw new \Exception('Não é possível definir esta função','0002');
+        throw new \Exception('Não é possível definir esta função',0002);
     }
 
     public function isAvailable()
@@ -50,14 +50,14 @@ class functionTestCase extends TestCase
         {
             return true;
         }
-        throw new \Exception('Não é possível iniciar um teste sem um função declarada','0003');
+        throw new \Exception('Não é possível iniciar um teste sem um função declarada',0003);
 
     }
 
     function functionResult()
     {
         $function = $this->function;
-        dd($function);
         return $function();
+
     }
 }
