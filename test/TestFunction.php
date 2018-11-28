@@ -6,11 +6,14 @@
  * Time: 9:36 PM
  */
 
-declare(strict_types=1);
+namespace Tests;
+
+include 'c:\xampp\htdocs\VHJ\vendor\autoload.php';
 
 use  AnthraxisBR\UnitStandaloneTest\functionTestCase;
 
-final class EmailTest extends functionTestCase
+
+final class TestCase extends functionTestCase
 {
     /**
      * Define a função e o arquivo
@@ -27,14 +30,17 @@ final class EmailTest extends functionTestCase
         /**
          * A função deve existir no arquivo informado
          */
-        $this->setFunction('');
+        $this->setFile( 'c:\xampp\htdocs\VHJ\public\index.php');
+
+        $this->setFunction('testar');
+
         parent::__construct($name, $data, $dataName);
     }
 
     /**
-     * 
+     *
      */
-    public function Testar(): void
+    public function testTestar(): void
     {
         $this->assertEquals(
             $this->functionResult(),
